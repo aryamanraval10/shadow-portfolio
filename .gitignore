@@ -1,0 +1,14 @@
+.DS_Store
+.venv/
+__pycache__/
+
+# Your own trades and anything derived from them stays off GitHub.
+data/trades.csv
+results/vs_spy.png
+
+# Large downloaded caches — the scripts re-fetch these.
+data/prices_cache.pkl
+data/sp500_history.csv
+
+# The momentum chart is built from public market data, so it ships.
+!results/momentum_sp500.png

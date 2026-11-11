@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shadow Portfolio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<main class="page">
+  <header>
+    <p class="eyebrow">Shadow Portfolio</p>
+    <h1 id="verdict">Log a trade to start the race.</h1>
+    <p class="lede">Every dollar you put into a stock is also spent on SPY on the same day. Same money, same dates, two outcomes.</p>
+  </header>
+
+  <section class="panel stats" aria-label="Summary">
+    <div class="stat"><div class="k">Total invested</div><div class="v" id="s-inv">—</div><div class="s" id="s-inv-sub">&nbsp;</div></div>
+    <div class="stat"><div class="k">Your portfolio</div><div class="v" id="s-you">—</div><div class="s" id="s-you-sub">&nbsp;</div></div>
+    <div class="stat"><div class="k">Same dollars in SPY</div><div class="v" id="s-spy">—</div><div class="s" id="s-spy-sub">&nbsp;</div></div>
+    <div class="stat diff"><div class="k">Difference</div><div class="v" id="s-diff">—</div><div class="s" id="s-diff-sub">&nbsp;</div></div>
+  </section>
+
+  <section class="panel chart-panel">
+    <div class="chart-head">
+      <h2>Value over time</h2>
+      <ul class="legend">
+        <li><span class="sw you"></span>Your portfolio</li>
+        <li><span class="sw spy"></span>SPY shadow</li>
+        <li><span class="sw inv"></span>Money invested</li>
+      </ul>
+    </div>
+    <div class="chart-wrap" id="chart-wrap">
+      <svg id="chart" tabindex="0" role="img" aria-label="Line chart of portfolio value, SPY shadow value and money invested over time"></svg>
+      <div class="tip" id="tip" hidden></div>
+      <div class="empty" id="chart-empty" hidden>No trades counted yet. Add one below and the chart starts on its date.</div>
+    </div>
+    <p class="note">Prices are simulated with a seeded random walk, so they are the same on every visit but are not real market data. Each day's simulated close is used for valuation. Hover, or focus the chart and use the arrow keys, to read a day.</p>
+  </section>
+
+  <section class="panel ledger">
+    <div class="ledger-head">
+      <h2>Trades</h2>
+      <div class="actions">
+        <span class="confirm" id="clear-confirm" hidden>Delete every trade?
+          <button type="button" id="clear-yes">Delete all</button>
+          <button type="button" id="clear-no">Keep them</button>
+        </span>
+        <button type="button" id="clear">Clear all</button>
+        <button type="button" class="primary" id="add">Add trade</button>
+      </div>
+    </div>
+    <div class="banner" id="example-banner" hidden>
+      <span>These are example trades, not yours. Edit them, or clear them and log your own.</span>
+      <button type="button" id="example-clear">Clear examples</button>
+    </div>
+    <div class="scroll">
+      <table>
+        <thead><tr>
+          <th>Date</th><th>Ticker</th><th class="num">Shares</th><th class="num">Price paid</th>
+          <th class="num">Cost</th><th class="num">Worth now</th><th class="num">vs. SPY</th><th><span hidden>Delete</span></th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+        <tfoot><tr>
+          <td colspan="4">Total</td>
+          <td class="num" id="f-cost">—</td><td class="num" id="f-now">—</td><td class="num" id="f-vs">—</td><td></td>
+        </tr></tfoot>
+      </table>
+    </div>
+    <p class="note" id="ledger-note">New rows fill in that day's simulated close. Type over it with the price you actually paid. Weekend dates count on the next trading day.</p>
+  </section>
+</main>
+<script type="module" src="src/app.js"></script>
+</body>
+</html>
